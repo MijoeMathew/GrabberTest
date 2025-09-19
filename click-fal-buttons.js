@@ -1,4 +1,4 @@
-class ClickFalTileGridBehavior {
+class ClickFalTileGridBehavior { 
   // required: an id property
   static id = "ClickFalTileGridBehavior";
 
