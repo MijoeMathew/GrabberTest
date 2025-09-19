@@ -1,9 +1,19 @@
-async function handler(page, context) {
+async function behavior(page, context) {
+  console.log("Custom behavior started");
+
   const buttons = await page.$$("fal-tile-grid button");
+  console.log(`Found ${buttons.length} buttons`);
 
   for (let i = 0; i < buttons.length; i++) {
+    console.log(`Clicking button ${i + 1}`);
     await buttons[i].click();
-    await page.waitForTimeout(3000); // wait 3s for DOM to update
-    await context.snapshot();        // force save snapshot
+
+    // wait for new DOM to render (adjust as needed)
+    await page.waitForTimeout(3000);
+
+    // force Browsertrix to save the page state
+    await context.snapshot({ label: `button-${i + 1}` });
   }
+
+  console.log("Custom behavior finished");
 }
